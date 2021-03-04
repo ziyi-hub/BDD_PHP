@@ -1,2 +1,4 @@
 # BDD_Application
-TD1
+Gabriel Davidenko
+Paul Devilliers
+Ziyi Wang
