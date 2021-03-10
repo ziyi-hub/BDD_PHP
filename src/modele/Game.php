@@ -19,6 +19,6 @@ class Game extends \Illuminate\Database\Eloquent\Model
     }
 
     public function question5(){
-
+        return Game::query()->select('name', 'deck')->paginate(500)->get();
     }
 }
