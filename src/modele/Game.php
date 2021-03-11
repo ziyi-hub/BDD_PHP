@@ -8,17 +8,4 @@ class Game extends \Illuminate\Database\Eloquent\Model
     protected $table='game';
     protected $primaryKey='id';
 
-    public static function question1() {
-        return Game::query()->where("name", "like", "%Mario")
-            ->get();
-    }
-
-    public static function question4() {
-        return Game::query()->where("id", ">=", "21173")->limit(442)
-            ->get();
-    }
-
-    public static function question5(){
-
-    }
 }
