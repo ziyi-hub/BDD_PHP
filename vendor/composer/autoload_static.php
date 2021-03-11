@@ -27,7 +27,7 @@ class ComposerStaticInitd5dec045853f1dfac34d333378283e7d
         ),
         't' => 
         array (
-            'td1\\' => 4,
+            'td2\\' => 4,
         ),
         'c' => 
         array (
@@ -80,7 +80,7 @@ class ComposerStaticInitd5dec045853f1dfac34d333378283e7d
         array (
             0 => __DIR__ . '/..' . '/voku/portable-ascii/src/voku',
         ),
-        'td1\\' => 
+        'td2\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),

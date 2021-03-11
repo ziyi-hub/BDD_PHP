@@ -1,11 +1,11 @@
 <?php
 
 
-namespace td1\modele;
-use td1\modele\Character;
-use td1\modele\Game_rating;
-use td1\modele\Rating_board;
-use td1\modele\Genre;
+namespace td2\modele;
+use td2\modele\Character;
+use td2\modele\Game_rating;
+use td2\modele\Rating_board;
+use td2\modele\Genre;
 class Game extends \Illuminate\Database\Eloquent\Model
 {
     protected $table='game';

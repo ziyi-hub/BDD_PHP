@@ -1,7 +1,7 @@
 <?php
 
 
-namespace td1\modele;
+namespace td2\modele;
 
 class Platform extends \Illuminate\Database\Eloquent\Model
 {

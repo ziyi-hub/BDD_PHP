@@ -1,8 +1,8 @@
 <?php
 
 
-namespace td1\modele;
-use td1\modele\Game;
+namespace td2\modele;
+use td2\modele\Game;
 
 class Company extends \Illuminate\Database\Eloquent\Model
 {
