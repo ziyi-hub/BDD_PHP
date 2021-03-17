@@ -17,3 +17,6 @@ echo \td2\modele\Game::question2();
 echo '</br>';
 echo '</br>';
 
+echo \td2\modele\Game::question3();
+echo '</br>';
+echo '</br>';

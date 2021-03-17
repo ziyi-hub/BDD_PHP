@@ -30,6 +30,16 @@ class Game extends \Illuminate\Database\Eloquent\Model
         return $game->characters;
     }
 
+    public function company(){
+        return $this->belongsToMany(Company::class, "game_developers", "game_id", "comp_id");
+    }
+
+    public static function question3() {
+        $game = Game::query()->select()
+            ->where("name", "like", "%Sony%")->get()->first;
+        return $game->company;
+    }
+
     public static function question4(){
         return Game::query()
             ->where("name", "like", "%Mario%")
