@@ -6,24 +6,22 @@ use td2\modele\Character;
 use td2\modele\Game_rating;
 use td2\modele\Rating_board;
 use td2\modele\Genre;
+use function React\Promise\all;
+
 class Game extends \Illuminate\Database\Eloquent\Model
 {
     protected $table='game';
     protected $primaryKey='id';
     protected $fillable = ["id"];
 
-    public static function question1(){
-        $game = new Game(["id" => 12342]);
-        return $game
-            ->belongsToMany(Character::class, "game2character", "game_id", "character_id")
-            ->get();
+    public function characters(){
+        return $this->belongsToMany(Character::class, "game2character", "game_id", "character_id");
     }
 
-    public static function question2(){
-        return Game::query()
-            ->select()
-            ->where("name", "like", "Mario%")
-            ->belongsToMany(Character::class, "game2character", "game_id", "character_id");
+    public static function question1(){
+        $game = Game::query()->select('name','deck')
+        ->where("id", "=", 12342)->get()->first;
+        return $game->characters;
     }
 
     public static function question4(){

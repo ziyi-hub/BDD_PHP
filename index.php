@@ -12,3 +12,4 @@ $db->bootEloquent();
 echo \td2\modele\Game::question1();
 echo '</br>';
 echo '</br>';
+
