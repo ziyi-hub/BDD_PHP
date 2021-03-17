@@ -8,3 +8,7 @@ $db = new DB();
 $db->addConnection(parse_ini_file($config['settings']['dbfile']));
 $db->setAsGlobal();
 $db->bootEloquent();
+
+echo \td2\modele\Game::question1();
+echo '</br>';
+echo '</br>';

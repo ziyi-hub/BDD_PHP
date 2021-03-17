@@ -10,12 +10,13 @@ class Game extends \Illuminate\Database\Eloquent\Model
 {
     protected $table='game';
     protected $primaryKey='id';
+    protected $fillable = ["id"];
 
     public static function question1(){
-        return Game::query()
-            ->select('name', 'deck')
-            ->where("id", "=", 12342)
-            ->belongsToMany(Character::class, "game2character", "game_id", "character_id");
+        $game = new Game(["id" => 12342]);
+        return $game
+            ->belongsToMany(Character::class, "game2character", "game_id", "character_id")
+            ->get();
     }
 
     public static function question2(){
