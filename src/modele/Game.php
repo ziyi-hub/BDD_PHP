@@ -24,6 +24,12 @@ class Game extends \Illuminate\Database\Eloquent\Model
         return $game->characters;
     }
 
+    public static function question2(){
+        $game = Game::query()->select()
+            ->where("name", "like", "Mario%")->firstOr();
+        return $game->characters;
+    }
+
     public static function question4(){
         return Game::query()
             ->where("name", "like", "%Mario%")

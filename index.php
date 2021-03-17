@@ -13,3 +13,7 @@ echo \td2\modele\Game::question1();
 echo '</br>';
 echo '</br>';
 
+echo \td2\modele\Game::question2();
+echo '</br>';
+echo '</br>';
+
