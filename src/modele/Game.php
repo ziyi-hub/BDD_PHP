@@ -40,11 +40,19 @@ class Game extends \Illuminate\Database\Eloquent\Model
         return $game->company;
     }
 
+    public function game_rating(){
+        return $this->belongsToMany(Game_rating::class, "game2rating", "rating_id", "game_id");
+    }
+
+    public function rating_board(){
+        return $this->belongsToMany(Rating_board::class, 'game2rating', "rating_id", "game_id");
+    }
+
     public static function question4(){
-        return Game::query()
-            ->where("name", "like", "%Mario%")
-            ->belongsToMany(Game_rating::class, "game2rating", "rating_id", "game_id")
-            ->hasMany(Rating_board::class, 'rating_board_id');
+        $game = Game::query()->select()
+            ->where("name", "like", "%Mario%")->get()->first;
+        $game2 = $game->game_rating;
+        $game2->rating_board;
     }
 
     public static function question5(){
