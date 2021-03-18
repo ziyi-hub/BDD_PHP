@@ -8,6 +8,4 @@ class Character extends Model
 {
     protected $table='character';
     protected $primaryKey='id';
-
-
 }
