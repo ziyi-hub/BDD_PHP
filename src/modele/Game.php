@@ -10,4 +10,13 @@ class Game extends \Illuminate\Database\Eloquent\Model
 {
     protected $table='game';
     protected $primaryKey='id';
+
+    public function characters(){
+        return $this->belongsToMany(Character::class, "game2character", "game_id", "character_id");
+    }
+
+    public function game_rating(){
+        return $this->belongsToMany(Game_rating::class, "game2rating", "rating_id", "game_id");
+    }
+
 }
