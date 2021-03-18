@@ -56,13 +56,6 @@ class Game extends \Illuminate\Database\Eloquent\Model
     }
 
     public static function question5(){
-        return Game::query()
-            ->where("name", "like", "Mario%")
-            ->havingRaw("count(character_id) > 3")
-            ->belongsToMany(Character::class, "game2character", "game_id", "character_id");
-    }
-
-    public static function question_5(){
         $count = \td2\modele\Character::query()->count("id");
         $game = Game::query()->select()
             ->where("name", "like", "Mario%")
@@ -72,10 +65,10 @@ class Game extends \Illuminate\Database\Eloquent\Model
     }
 
     public static function question6(){
-        return Game::query()
+        $game = Game::query()->select()
             ->where("game.name", "like", "Mario%")
-            ->where("game_rating.name", "like", "%3+%")
-            ->belongsToMany(Game_rating::class, "game2rating", "rating_id", "game_id");
+            ->where(Game_rating::query()->select("name"), "like", "%3+%")->get()->first;
+        return $game->game_rating;
     }
 
     public static function question7(){

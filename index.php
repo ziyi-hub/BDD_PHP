@@ -8,7 +8,7 @@ $db = new DB();
 $db->addConnection(parse_ini_file($config['settings']['dbfile']));
 $db->setAsGlobal();
 $db->bootEloquent();
-
+/*
 echo \td2\modele\Game::question1();
 echo '</br>';
 echo '</br>';
@@ -25,7 +25,11 @@ echo \td2\modele\Game::question4();
 echo '</br>';
 echo '</br>';
 
-echo \td2\modele\Game::question_5();
+echo \td2\modele\Game::question5();
+echo '</br>';
+echo '</br>';
+*/
+echo \td2\modele\Game::question6();
 echo '</br>';
 echo '</br>';
 
