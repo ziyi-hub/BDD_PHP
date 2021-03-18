@@ -14,14 +14,14 @@ $db->bootEloquent();
 
 $time = microtime(true);
 \td2\modele\Game::all();
-echo "1. Temps d'execution : ".(microtime(true)-$time)." secondes";
+echo "Ressources1. Temps d'execution : ".(microtime(true)-$time)." secondes";
 echo "<br />";
 echo "<br />";
 
 
 $time = microtime(true);
 \td2\modele\Game::query()->select()->where("name", "like", "%Mario%");
-echo "2. Temps d'execution : ".(microtime(true)-$time)." secondes";
+echo "Ressources2. Temps d'execution : ".(microtime(true)-$time)." secondes";
 echo "<br />";
 echo "<br />";
 
@@ -31,7 +31,7 @@ $games = \td2\modele\Game::query()->select()->where("name", "like", "Mario%");
 foreach ($games as $game){
     $game->character;
 }
-echo "3. Temps d'execution : ".(microtime(true)-$time)." secondes";
+echo "Ressources3. Temps d'execution : ".(microtime(true)-$time)." secondes";
 echo "<br />";
 echo "<br />";
 
@@ -43,7 +43,52 @@ $games = \td2\modele\Game::query()
 foreach ($games as $game){
     $game->game_rating->where("name", "like", "%3+%");
 }
-echo "4. Temps d'execution : ".(microtime(true)-$time)." secondes";
+echo "Ressources4. Temps d'execution : ".(microtime(true)-$time)." secondes";
 echo "<br />";
 echo "<br />";
+
+
+
+$time = microtime(true);
+$game1 = \td2\modele\Game::all()
+    ->where("name", "like", "M%");
+echo "Index1. Temps d'execution : ".(microtime(true)-$time)." secondes";
+echo "<br />";
+
+$game2 = \td2\modele\Game::all()
+    ->where("name", "like", "N%");
+echo "Index1. Temps d'execution : ".(microtime(true)-$time)." secondes";
+echo "<br />";
+
+$game3 = \td2\modele\Game::all()
+    ->where("name", "like", "S%");
+echo "Index1. Temps d'execution : ".(microtime(true)-$time)." secondes";
+echo "<br />";
+echo "<br />";
+
+
+
+\td2\modele\Game::index();
+echo "Index2. Temps d'execution : ".(microtime(true)-$time)." secondes";
+echo "<br />";
+echo "<br />";
+
+
+
+$time = microtime(true);
+$game1 = \td2\modele\Game::all()
+    ->where("name", "like", "M%");
+echo "Index3. Temps d'execution : ".(microtime(true)-$time)." secondes";
+echo "<br />";
+
+$game2 = \td2\modele\Game::all()
+    ->where("name", "like", "N%");
+echo "Index3. Temps d'execution : ".(microtime(true)-$time)." secondes";
+echo "<br />";
+
+$game3 = \td2\modele\Game::all()
+    ->where("name", "like", "S%");
+echo "Index3. Temps d'execution : ".(microtime(true)-$time)." secondes";
+echo "<br />";
+
 

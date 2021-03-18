@@ -2,6 +2,7 @@
 
 
 namespace td2\modele;
+use mysql_xdevapi\Schema;
 use td2\modele\Character;
 use td2\modele\Game_rating;
 use td2\modele\Rating_board;
@@ -17,6 +18,12 @@ class Game extends \Illuminate\Database\Eloquent\Model
 
     public function game_rating(){
         return $this->belongsToMany(Game_rating::class, "game2rating", "rating_id", "game_id");
+    }
+
+    public static function index(){
+        \Illuminate\Support\Facades\Schema::table("game", function ($table){
+            $table->index("name");
+        });
     }
 
 }
