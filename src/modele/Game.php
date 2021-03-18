@@ -62,6 +62,15 @@ class Game extends \Illuminate\Database\Eloquent\Model
             ->belongsToMany(Character::class, "game2character", "game_id", "character_id");
     }
 
+    public static function question_5(){
+        $count = \td2\modele\Character::query()->count("id");
+        $game = Game::query()->select()
+            ->where("name", "like", "Mario%")
+            ->havingRaw("$count > 3")
+            ->get()->first;
+        return $game->characters;
+    }
+
     public static function question6(){
         return Game::query()
             ->where("game.name", "like", "Mario%")

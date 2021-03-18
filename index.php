@@ -24,3 +24,9 @@ echo '</br>';
 echo \td2\modele\Game::question4();
 echo '</br>';
 echo '</br>';
+
+echo \td2\modele\Game::question_5();
+echo '</br>';
+echo '</br>';
+
+
