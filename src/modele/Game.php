@@ -85,20 +85,20 @@ class Game extends \Illuminate\Database\Eloquent\Model
     }
 
     public static function question8(){
-        return Game::query()
+        $game = Game::query()->select()
             ->where("game.name", "like", "Mario%")
-            ->where("company.name", "like", "%Inc%")
-            ->where("game_rating.name", "like", "%3+%")
-            ->where("rating_board.name", "=", "CERO")
-            ->belongsToMany(Company::class, "game_publishers", "comp_id", "game_id")
-            ->belongsToMany(Game_rating::class, "game2rating", "rating_id", "game_id")
-            ->hasMany(Rating_board::class, 'rating_board_id');
+            ->where(Company::query()->select("name"), "like", "%Inc%")
+            ->where(Game_rating::query()->select("name"), "like", "%3+%")
+            ->where(Rating_board::query()->select("name"), "=", "CERO")->get()->first;
+        $game2 = $game->companyPublisher;
+        $game3 = $game2->game_rating;
+        return $game3->rating_board;
     }
 
     public static function question9(){
         $genre = new Genre();
         $genre->name = "NomGenre";
-        $genre->save();
+        $genre->belongsToMany(Genre::class, "game2genre", "genre_id", "game_id");
         $geme2Genre = new Game2genre();
         $geme2Genre->game_id = 12;
         $geme2Genre->genre_id = $genre->id;
@@ -110,6 +110,16 @@ class Game extends \Illuminate\Database\Eloquent\Model
         $geme2Genre = new Game2genre();
         $geme2Genre->game_id = 345;
         $geme2Genre->genre_id = $genre->id;
+
+        $game1 = Game2genre::query()->select()
+            ->where("game_id", "=", 12)->get();
+
+        $game2 = Game2genre::query()->select()
+            ->where("game_id", "=", 56)->get();
+
+        $game3 = Game2genre::query()->select()
+            ->where("game_id", "=", 345)->get();
+        return $game1.'</br>'.'</br>'.$game2.'</br>'.'</br>'.$game3;
     }
 
 }

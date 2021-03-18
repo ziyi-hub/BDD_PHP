@@ -33,10 +33,16 @@ echo \td2\modele\Game::question6();
 echo '</br>';
 echo '</br>';
 
-
 echo \td2\modele\Game::question7();
 echo '</br>';
 echo '</br>';
 
+echo \td2\modele\Game::question8();
+echo '</br>';
+echo '</br>';
+
+echo \td2\modele\Game::question9();
+echo '</br>';
+echo '</br>';
 
 
