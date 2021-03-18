@@ -1,15 +1,17 @@
 <?php
 
 
-namespace td1\modele;
+namespace td2\modele;
+use td2\modele\Game;
 
 class Company extends \Illuminate\Database\Eloquent\Model
 {
     protected $table='company';
     protected $primaryKey='id';
 
-    public function question2() {
-        return Company::query()->where("location_country", "like", "Japan")
-            ->get();
+    public static function question3() {
+        return Game::query()->select()
+            ->where("name", "like", "%Sony%")
+            ->belongsToMany(Game::class, "geme_developers", "game_id", "comp_id");
     }
 }
