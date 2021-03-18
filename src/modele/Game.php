@@ -52,7 +52,7 @@ class Game extends \Illuminate\Database\Eloquent\Model
         $game = Game::query()->select()
             ->where("name", "like", "%Mario%")->get()->first;
         $game2 = $game->game_rating;
-        $game2->rating_board;
+        return $game2->rating_board;
     }
 
     public static function question5(){
@@ -71,13 +71,17 @@ class Game extends \Illuminate\Database\Eloquent\Model
         return $game->game_rating;
     }
 
+    public function companyPublisher(){
+        return $this->belongsToMany(Company::class, "game_publishers", "comp_id", "game_id");
+    }
+
     public static function question7(){
-        return Game::query()
+        $game = Game::query()->select()
             ->where("game.name", "like", "Mario%")
-            ->where("company.name", "like", "%Inc%")
-            ->where("game_rating.name", "like", "%3+%")
-            ->belongsToMany(Company::class, "game_publishers", "comp_id", "game_id")
-            ->belongsToMany(Game_rating::class, "game2rating", "rating_id", "game_id");
+            ->where(Company::query()->select("name"), "like", "%Inc%")
+            ->where(Game_rating::query()->select("name"), "like", "%3+%")->get()->first;
+        $game2 = $game->companyPublisher;
+        return $game2->game_rating;
     }
 
     public static function question8(){
