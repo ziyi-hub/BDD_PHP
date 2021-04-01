@@ -1,6 +1,6 @@
 <?php
 
-namespace td5\controleur;
+namespace td2\controleur;
 use Slim\Container;
 use td2\modele\Game;
 use td5\vue\VueParticipant;
@@ -10,7 +10,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 class ControleurJeu
 {
-    private Container $c;
+    private $c;
     private $htmlvars;
 
     public function __construct(Container $c) {

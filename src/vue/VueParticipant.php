@@ -1,7 +1,7 @@
 <?php
 
 
-namespace td5\vue;
+namespace td2\vue;
 
 class VueParticipant
 {
