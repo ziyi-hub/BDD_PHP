@@ -23,7 +23,8 @@ $app->get('/', function (Request $rq, Response $rs, array $args):Response{
 
 $app->get('/{id}', function (Request $rq, Response $rs, array $args):Response{
     $control = new \td5\controleur\ControleurJeu($this);
-    return $control->getGame($rq, $rs, $args);
+    //return $control->getGame($rq, $rs, $args);
+    return $control->getLienCollection($rq, $rs, $args);
     }
 );
 

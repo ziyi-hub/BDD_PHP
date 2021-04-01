@@ -50,4 +50,20 @@ class ControleurJeu
         }
         return $rs;
     }
+
+    function getLienCollection(Request $rq, Response $rs, array $args ):Response{
+        $tokenliste = $args['id'];
+        $liste = Game::find($tokenliste);
+        $array = array("links" => array("self" => array("href" => "/api/games/".$args['id'])));
+        $data = array_merge($liste, $array);
+        if(!is_null($data)) {
+            $vue = new VueParticipant([$data], $this->c);
+            $this->htmlvars['basepath'] = $rq->getUri()->getBasePath();
+            $rs->getBody()->write($vue->question2());
+        }
+        return $rs;
+    }
+
+
+
 }
