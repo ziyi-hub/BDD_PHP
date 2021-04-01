@@ -20,7 +20,7 @@ class VueParticipant
         {
             return "<h2>Liste Inexistante</h2>";
         }
-        return $l->toJson();
+        return json_encode($l);
     }
 
     public function question2(){
@@ -29,7 +29,7 @@ class VueParticipant
         {
             return "<h2>Liste Inexistante</h2>";
         }
-        return $l->toJson();
+        return json_encode($l);
     }
 
     public function question3(){

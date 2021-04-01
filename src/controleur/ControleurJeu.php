@@ -3,7 +3,7 @@
 namespace td2\controleur;
 use Slim\Container;
 use td2\modele\Game;
-use td5\vue\VueParticipant;
+use td2\vue\VueParticipant;
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
@@ -53,11 +53,11 @@ class ControleurJeu
 
     function getLienCollection(Request $rq, Response $rs, array $args ):Response{
         $tokenliste = $args['id'];
-        $liste = Game::find($tokenliste);
+        $liste = Game::query()->find($tokenliste);
         $array = array("links" => array("self" => array("href" => "/api/games/".$args['id'])));
-        $data = array_merge($liste, $array);
-        if(!is_null($data)) {
-            $vue = new VueParticipant([$data], $this->c);
+        array_push($array, $liste);
+        if(!is_null($array)) {
+            $vue = new VueParticipant([$array], $this->c);
             $this->htmlvars['basepath'] = $rq->getUri()->getBasePath();
             $rs->getBody()->write($vue->question2());
         }
