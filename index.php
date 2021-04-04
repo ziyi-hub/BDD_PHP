@@ -38,6 +38,11 @@ $app->get("/api/games/{id}/comments", function (Request $rq, Response $rs, array
     return $control->getComments($rq, $rs, $args);
 });
 
+$app->get("/api/games/{id}/characters", function (Request $rq, Response $rs, array $args):Response{
+    $control = new ControleurJeu($this);
+    return $control->getPersonnages($rq, $rs, $args);
+});
+
 $app->run();
 
 

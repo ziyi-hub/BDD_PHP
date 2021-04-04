@@ -104,4 +104,33 @@ class ControleurJeu
         return $rs;
     }
 
+    public function getPersonnages(Request $rq, Response $rs, array $args):Response
+    {
+        $id = $args['id'];
+        $listeGame = Game::query()->where("id", "=", $id)->get();
+        $res = array();
+        foreach ($listeGame as $game){
+            foreach($game->characters as $character) {
+                $res = [
+
+                    'character' => [
+                    'id' => $character->id,
+                    'name' => $character->name,
+                    ],
+
+                    'links' => [
+                        'self' => array("href" => "/api/characters/".$character->id),
+                    ],
+
+                ];
+            }
+        }
+        $res = ['characters' => $res];
+        $vue = new VueParticipant([$res], $this->c);
+        $this->htmlvars['basepath'] = $rq->getUri()->getBasePath();
+        $rs->withHeader("Content-Type", "application/json");
+        $rs->getBody()->write($vue->question2());
+        return $rs;
+    }
+
 }

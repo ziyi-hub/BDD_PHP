@@ -32,14 +32,6 @@ class VueParticipant
         return json_encode($l, JSON_PRETTY_PRINT);
     }
 
-    public function question3(){
-        $l = $this->data[0];
-        if(is_null($l))
-        {
-            return "<h2>Liste Inexistante</h2>";
-        }
-        return $l->toJson();
-    }
 
 }
 
