@@ -26,4 +26,7 @@ class Game extends \Illuminate\Database\Eloquent\Model
         });
     }
 
+    public function comments(){
+        return $this->hasMany(Comment::class, "game_id");
+    }
 }

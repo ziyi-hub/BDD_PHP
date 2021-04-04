@@ -18,22 +18,19 @@ $app = new \Slim\App($c);
 
 $app->get('/', function (Request $rq, Response $rs, array $args):Response{
     $control = new ControleurJeu($this);
-    return $control->getCollection($rq, $rs, $args);
-    }
-);
+    return $control->getCollection($rq, $rs, $args)->withHeader("Content-Type", "application/json");
+});
 
-$app->get('/{id}', function (Request $rq, Response $rs, array $args):Response{
+$app->get('/api/games/{id}', function (Request $rq, Response $rs, array $args):Response{
     $control = new ControleurJeu($this);
     //return $control->getGame($rq, $rs, $args);
-    return $control->getLienCollection($rq, $rs, $args);
-    }
-);
+    return $control->getLienCollection($rq, $rs, $args)->withHeader("Content-Type", "application/json");
+});
 
-$app->get('?page={id}', function (Request $rq, Response $rs, array $args):Response{
+$app->get('?page={page}', function (Request $rq, Response $rs, array $args):Response{
     $control = new ControleurJeu($this);
-    return $control->getPagination($rq, $rs, $args);
-    }
-);
+    return $control->getPagination($rq, $rs, $args)->withHeader("Content-Type", "application/json");
+});
 
 $app->get("/api/games/{id}/comments", function (Request $rq, Response $rs, array $args):Response{
     $control = new ControleurJeu($this);
