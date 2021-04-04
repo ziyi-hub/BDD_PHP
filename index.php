@@ -16,7 +16,7 @@ $config = require_once './src/conf/settings.php';
 $c = new \Slim\Container($config);
 $app = new \Slim\App($c);
 
-$app->get('/', function (Request $rq, Response $rs, array $args):Response{
+$app->get('/api/games', function (Request $rq, Response $rs, array $args):Response{
     $control = new ControleurJeu($this);
     return $control->getCollection($rq, $rs, $args)->withHeader("Content-Type", "application/json");
 });
@@ -24,7 +24,8 @@ $app->get('/', function (Request $rq, Response $rs, array $args):Response{
 $app->get('/api/games/{id}', function (Request $rq, Response $rs, array $args):Response{
     $control = new ControleurJeu($this);
     //return $control->getGame($rq, $rs, $args);
-    return $control->getLienCollection($rq, $rs, $args)->withHeader("Content-Type", "application/json");
+    //return $control->getLienCollection($rq, $rs, $args)->withHeader("Content-Type", "application/json");
+    return $control->retourGames($rq, $rs, $args)->withHeader("Content-Type", "application/json");
 });
 
 $app->get('?page={page}', function (Request $rq, Response $rs, array $args):Response{

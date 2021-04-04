@@ -65,6 +65,22 @@ class ControleurJeu
         return $rs;
     }
 
+    function retourGames(Request $rq, Response $rs, array $args ):Response{
+        $tokenliste = $args['id'];
+        $liste = Game::query()->find($tokenliste);
+        $array = array("links" => array(
+            "comments" => array("href" => "/api/games/".$args['id']."/comments"),
+            "characters" => array("href" => "/api/games/".$args['id']."/characters")
+        ));
+        array_push($array, $liste);
+        if(!is_null($array)) {
+            $vue = new VueParticipant([$array], $this->c);
+            $this->htmlvars['basepath'] = $rq->getUri()->getBasePath();
+            $rs->getBody()->write($vue->question2());
+        }
+        return $rs;
+    }
+
     public function getComments(Request $rq, Response $rs, array $args):Response
     {
         $id = $args['id'];
