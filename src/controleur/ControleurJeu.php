@@ -3,6 +3,7 @@
 namespace td2\controleur;
 use Illuminate\Support\Facades\DB;
 use Slim\Container;
+use td2\modele\Comment;
 use td2\modele\Game;
 use td2\vue\VueParticipant;
 use \Psr\Http\Message\ServerRequestInterface as Request;
@@ -100,7 +101,8 @@ class ControleurJeu
         $vue = new VueParticipant([$res], $this->c);
         $this->htmlvars['basepath'] = $rq->getUri()->getBasePath();
         $rs->withHeader("Content-Type", "application/json");
-        $rs->getBody()->write($vue->question2());
+        //$rs->getBody()->write($vue->question2());
+        $rs->getBody()->write($vue->question7());
         return $rs;
     }
 
@@ -127,6 +129,28 @@ class ControleurJeu
         }
         $res = ['characters' => $res];
         $vue = new VueParticipant([$res], $this->c);
+        $this->htmlvars['basepath'] = $rq->getUri()->getBasePath();
+        $rs->withHeader("Content-Type", "application/json");
+        $rs->getBody()->write($vue->question2());
+        return $rs;
+    }
+
+
+    public function validerRequete(Request $rq, Response $rs, array $args):Response
+    {
+        $id = $args['id'];
+        $this->htmlvars['basepath'] = $rq->getUri()->getBasePath();
+        $post = $rq->getParsedBody();
+        $email = filter_var($post['email'], FILTER_SANITIZE_STRING) ;
+        $titre = filter_var($post['titre'] , FILTER_SANITIZE_STRING) ;
+        $commentaire = filter_var($post['commentaire'] , FILTER_SANITIZE_STRING) ;
+        $comment = Comment::find($id);
+        $comment->created_by = $email;
+        $comment->title = $titre;
+        $comment->content = $commentaire;
+        $comment->save();
+        $listeComment = Comment::query()->where("id", "=", $id)->get();
+        $vue = new VueParticipant([$listeComment], $this->c);
         $this->htmlvars['basepath'] = $rq->getUri()->getBasePath();
         $rs->withHeader("Content-Type", "application/json");
         $rs->getBody()->write($vue->question2());

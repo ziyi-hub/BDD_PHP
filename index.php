@@ -40,8 +40,14 @@ $app->get("/api/games/{id}/comments", function (Request $rq, Response $rs, array
 
 $app->get("/api/games/{id}/characters", function (Request $rq, Response $rs, array $args):Response{
     $control = new ControleurJeu($this);
-    return $control->getPersonnages($rq, $rs, $args);
+    return $control->getPersonnages($rq, $rs, $args)->withHeader("Content-Type", "application/json")->withStatus(201);
 });
+/*
+$app->post("/api/comments/{id}", function (Request $rq, Response $rs, array $args):Response{
+    $control = new ControleurJeu($this);
+    return $control->validerRequete($rq, $rs, $args)->withHeader("Content-Type", "application/json")->withStatus(201);
+});
+*/
 
 $app->run();
 
