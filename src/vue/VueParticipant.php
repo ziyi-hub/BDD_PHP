@@ -32,16 +32,12 @@ class VueParticipant
         return json_encode($l, JSON_PRETTY_PRINT);
     }
 
-    public function question7(){
-        $l = $this->data[0];
-        //$action = $this->container->router->pathFor('valider');
-        if(is_null($l))
-        {
-            return "<h2>Liste Inexistante</h2>";
-        }
-        $retour = "<h2>Ajouter des commentaires</h2>";
+    public function question7($id){
+        $action = $this->container->router->pathFor('valider', ["id"=>$id]);
+
+        $retour = "<h2>Ajouter un commentaire</h2>";
         $retour .= <<<END
-<form action="" method="post">
+<form action="$action" method="post">
         <label for="email">Email de l'utilisateur : </label><br>
         <input type="text" id="email" name="email"><br>
         <label for="titre">Titre : </label><br>
@@ -49,11 +45,9 @@ class VueParticipant
         <label for="commentaire">Contenu du commentaire : </label><br>
         <input type="text" id="commentaire" name="commentaire"><br>
         <button type="submit">Envoyer</button>
-</form>
-
-
+</form><br/>
 END;
-    return $retour."<br />"."<br />".json_encode($l, JSON_PRETTY_PRINT);
+        return $retour;
     }
 }
 

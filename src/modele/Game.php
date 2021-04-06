@@ -2,7 +2,6 @@
 
 
 namespace td2\modele;
-use mysql_xdevapi\Schema;
 use td2\modele\Character;
 use td2\modele\Game_rating;
 use td2\modele\Rating_board;
